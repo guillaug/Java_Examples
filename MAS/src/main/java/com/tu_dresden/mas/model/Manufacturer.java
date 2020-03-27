@@ -24,8 +24,8 @@ public class Manufacturer extends Agent{
 	//The name of the Item
 	private String targetManufacturingItem;
 	
-	//The list of known manufacturing companies
-	private AID[] manufacturaAgents;
+	//The list of known distributor companies
+	private AID[] distributorAgent;
 	
 	protected void setup() {
 		logger.info("setup manufacturing");
@@ -46,7 +46,7 @@ public class Manufacturer extends Agent{
 					template.addServices(serviceDesc);
 					try {
 						DFAgentDescription[] results = DFService.search(myAgent, template);
-						manufacturaAgents = new AID[results.length];
+						distributorAgent = new AID[results.length];
 						for(int i = 0; i < results.length; ++i) {
 							
 						}
@@ -63,9 +63,13 @@ public class Manufacturer extends Agent{
 	
 	private class RequestPerformer extends Behaviour {
 		
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
 		private AID producer;
 		private int bestPrice;
-		private int repliesCnt = 0;
+		private int counterReply = 0;
 		private MessageTemplate messageTemplate;
 		private int condition = 0;
 		@Override
@@ -75,8 +79,8 @@ public class Manufacturer extends Agent{
 			case 0:
 				//Send the cfp to all manufacturing companies
 				ACLMessage cfp = new ACLMessage(ACLMessage.CFP);
-				for(int i = 0; i < manufacturaAgents.length; ++i) {
-					cfp.addReceiver(manufacturaAgents[i]); //scann all receivers
+				for(int i = 0; i < distributorAgent.length; ++i) {
+					cfp.addReceiver(distributorAgent[i]); //scann all receivers
 				}
 				cfp.setContent(targetManufacturingItem);
 				cfp.setConversationId("initial-manufacturing");
@@ -84,13 +88,67 @@ public class Manufacturer extends Agent{
 				myAgent.send(cfp);
 				
 				//Prepare the template to get proposals
-				//mt = MessageTemplate.and(MessageTemplate.MatchConversationId("suppy_chain_simulation"));
+				messageTemplate = MessageTemplate.and(MessageTemplate.MatchConversationId("suppy_chain_simulation"),
+						MessageTemplate.MatchInReplyTo(cfp.getReplyWith()));
+			break;
+			
+			case 1:
+				ACLMessage reply = myAgent.receive(messageTemplate); // reply to the message
+				if(reply != null) {
+					//Reply received 
+					if (reply.getPerformative() == ACLMessage.PROPOSE) {
+						// WHy propose message 
+						int worth = Integer.parseInt(reply.getContent());
+						if (producer == null || worth < bestPrice) {
+							//price assignment to the bestPrice
+							bestPrice = worth;
+							producer = reply.getSender();
+						}
+					}
+					counterReply++;
+					if(counterReply >= distributorAgent.length) {
+						//if you want, you can assign a step count
+					}
+					
+				}
+				else {
+					block();
+				}
+			break;
+			case 2:
+				ACLMessage order = new ACLMessage(ACLMessage.ACCEPT_PROPOSAL);
+				order.addReceiver(producer);
+				order.setContent(targetManufacturingItem); 
+				order.setConversationId("suppy_chain_simulation");
+				order.setReplyWith("order" + System.currentTimeMillis());
+				myAgent.send(order); //send order to manufacturing company
+				messageTemplate = MessageTemplate.and(MessageTemplate.MatchConversationId("supply-chain-simulation"),
+						MessageTemplate.MatchInReplyTo(order.getReplyWith()));
+				break;
+			case 3:
+				reply = myAgent.receive(messageTemplate);
+				if(reply != null) {
+					//Purchase order reply received
+					if(reply.getPerformative() == ACLMessage.INFORM) //why get performative
+					{
+						logger.info("targetManufacturingItem: " + targetManufacturingItem);
+						logger.info("Producer: " + producer);
+						myAgent.doDelete();
+					}else {
+						logger.warn("Attempt failed. Please try again.");
+					}
+				} else {
+					block();
+				}
+				break;
 			}
 		}
 
-		@Override
 		public boolean done() {
 			// TODO Auto-generated method stub
+			if(producer == null) { // why error
+				logger.info("Attempt failed");
+			}
 			return false;
 		}
 		

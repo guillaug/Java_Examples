@@ -6,6 +6,7 @@ import com.tu_dresden.blockchain.ConnectionWeb3;
 
 public class App 
 {
+	//We will simulate a supply chain just like in Anylogic
     public static void main( String[] args )
     {
         System.out.println( "Hello World!" );
