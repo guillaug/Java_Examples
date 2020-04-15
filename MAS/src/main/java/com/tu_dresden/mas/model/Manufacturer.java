@@ -38,6 +38,11 @@ public class Manufacturer extends Agent{
 			
 			//Add a ticket behaviour that schedules a request to seller agents every minute
 			addBehaviour(new TickerBehaviour(this, 60000) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 1L;
+
 				protected void onTick() {
 					logger.info("We are trying to reach the following item : " + targetManufacturingItem);
 					DFAgentDescription template = new DFAgentDescription(); // this is an ontology description

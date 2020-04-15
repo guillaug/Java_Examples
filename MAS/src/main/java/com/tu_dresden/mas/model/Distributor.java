@@ -1,7 +1,8 @@
 package com.tu_dresden.mas.model;
 
 import jade.core.Agent;
-import jade.core.behaviours.CyclicBehaviour;
+import jade.core.behaviours.CyclicBehaviour; //Behaviour library
+import jade.core.behaviours.OneShotBehaviour; //Behaviour library
 import jade.domain.DFService;
 import jade.domain.FIPAAgentManagement.DFAgentDescription;
 import jade.domain.FIPAAgentManagement.ServiceDescription;
@@ -19,6 +20,9 @@ public class Distributor extends Agent{
 	
 	// The catalogue of items
 	private Hashtable collectionDist;
+	
+	//GUI object
+	private DistributorGUI myGui;
 	
 	// setup function is going to be initiated
 	protected void setup() {
@@ -44,8 +48,32 @@ public class Distributor extends Agent{
 		}
 	}
 	
+	public void updateWarehouse(final String title, final int amount) {
+		addBehaviour(new OneShotBehaviour() {
+
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 3825295789844957677L;
+
+			@Override
+			public void action() 
+			{
+				// TODO Auto-generated method stub
+				collectionDist.put(title, new Integer(amount));
+				logger.info(title + " inserted into catalogue. Amount: " + amount);
+				
+			}		
+		});
+	}
+	
 	private class OfferRequestsServer extends CyclicBehaviour 
 	{
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = -847916859154318443L;
+
 		public void action() 
 		{
 			MessageTemplate mTemplate = MessageTemplate.MatchPerformative(ACLMessage.CFP);
@@ -72,7 +100,7 @@ public class Distributor extends Agent{
 			}
 			else
 			{
-				block(); //what is it
+				block(); // block the request
 			}
 		}
 	}
@@ -98,7 +126,7 @@ public class Distributor extends Agent{
 				if(priceOfPurchase != null) 
 				{
 					reply.setPerformative(ACLMessage.INFORM);
-					System.out.println(title + " sold to agent " + message.getSender().getName());
+					System.out.println(title + " distributed to agent " + message.getSender().getName());
 				}
 				else
 				{

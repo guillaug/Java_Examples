@@ -21,7 +21,7 @@ public class ConnectionFabric {
 		Wallet wallet = Wallets.newFileSystemWallet(walletDirectory);
 		
 		//Path to a common connection profile describing the network
-		Path networkConfigFile = Paths.get("connection.json");
+		Path networkConfigFile = Paths.get("connection.json"); //where is connection.json ? 
 		
 		//Configure the gateway connection used to access the network.
 		Gateway.Builder builder = Gateway.createBuilder();
