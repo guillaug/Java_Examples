@@ -1,0 +1,178 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.tu_dresden</groupId>
+  <artifactId>mas</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>mas</name>
+  <url>http://maven.apache.org</url>
+  <build>
+	  <!--  <plugins>
+	    <plugin>
+	        <artifactId>maven-compiler-plugin</artifactId>
+	        <version>${compiler.plugin.version}</version>
+	        <configuration>
+	            <source>${java.version}</source>
+	            <target>${java.version}</target>
+	        </configuration>
+	    </plugin>
+	  </plugins>-->
+          <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+  </build>
+  
+      <profiles>
+        <profile>
+          <id>jade-main</id>
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                  <mainClass>jade.Boot</mainClass>
+                  <arguments>
+                    <argument>-conf</argument>
+                    <argument>src/main/resources/jade-main-container.properties</argument>
+                  </arguments>
+                </configuration>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+        <profile>
+          <id>jade-agent</id>
+          <build>
+            <plugins>
+              <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.3.2</version>
+                <configuration>
+                  <mainClass>jade.Boot</mainClass>
+                  <arguments>
+                    <argument>-conf</argument>
+                    <argument>src/main/resources/jade-agent-container.properties</argument>
+                  </arguments>
+                </configuration>
+              </plugin>
+            </plugins>
+          </build>
+        </profile>
+    </profiles>
+  
+
+  <dependencies>
+	<!-- https://mvnrepository.com/artifact/junit/junit -->
+	<dependency>
+	    <groupId>junit</groupId>
+	    <artifactId>junit</artifactId>
+	    <version>4.13</version>
+	    <scope>test</scope>
+	</dependency>
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-api</artifactId>
+	        <version>1.7.10</version>
+	    </dependency>
+	    <dependency>
+	        <groupId>org.slf4j</groupId>
+	        <artifactId>slf4j-simple</artifactId>
+	        <version>1.7.10</version>
+	    </dependency>
+	         <!-- Hyperledger Fabric -->
+	     <dependency>
+	         <groupId>org.hyperledger.fabric-sdk-java</groupId>
+	         <artifactId>fabric-sdk-java</artifactId>
+	         <version>1.4.7</version>
+	     </dependency>
+	     <dependency>
+			  <groupId>org.hyperledger.fabric</groupId>
+			  <artifactId>fabric-gateway-java</artifactId>
+			  <version>2.0.0</version>
+		</dependency>
+        <!-- Ethereum -->
+        <dependency>
+            <groupId>org.ethereum</groupId>
+            <artifactId>ethereumj-core</artifactId>
+            <version>${ethereumj-core.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.web3j</groupId>
+            <artifactId>core</artifactId>
+            <version>${web3j.core.version}</version>
+        </dependency>
+		
+        <!--  <dependency>
+            <groupId>com.tilab.jade</groupId>
+            <artifactId>jade</artifactId>
+            <version>4.3.3</version>
+        </dependency>
+        <dependency> 
+            <groupId>com.tilab.jade</groupId>
+            <artifactId>jade-test-suite</artifactId>
+            <version>1.12.0</version>
+        </dependency>-->
+        <!--  <dependency>
+            <groupId>org.ethereum</groupId>
+            <artifactId>ethereumj-core</artifactId>
+            <version>${ethereumj-core.version}</version>
+        </dependency> -->
+        <!--  <dependency>
+		      <groupId>org.ethereum</groupId>
+		      <artifactId>ethereumj-core</artifactId>
+		      <version>1.10.0-SNAPSHOT</version>
+		      <scope>compile</scope>
+    	</dependency>-->
+        
+		<!--   <dependency>
+		    <groupId>org.web3j</groupId>
+		    <artifactId>core</artifactId>
+		    <version>4.5.17</version>
+		</dependency>-->
+  </dependencies>
+  
+    <repositories>
+        <repository>
+            <id>Ethereum</id>
+            <name>Ethereum</name>
+            <url>https://dl.bintray.com/ethereum/maven/</url>
+        </repository>
+                <repository>
+            <id>tilab</id>
+            <url>http://jade.tilab.com/maven/</url>
+        </repository>
+        
+    </repositories>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <maven.compiler.target>1.8</maven.compiler.target>
+	    <maven.compiler.source>1.8</maven.compiler.source>
+    
+        <ethereumj-core.version>1.10.0-RELEASE</ethereumj-core.version>
+        <web3j.core.version>4.5.17</web3j.core.version>
+        <!--  <spring.boot.version>1.5.6.RELEASE</spring.boot.version>
+        <mockito.version>2.21.0</mockito.version>
+        <jsonpath.version>2.4.0</jsonpath.version>
+        <logback.version>1.2.3</logback.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <spring-boot-maven-plugin.version>2.0.4.RELEASE</spring-boot-maven-plugin.version>
+        <compiler.plugin.version>3.1</compiler.plugin.version>-->
+    </properties>
+    
+  
+     
+    
+</project>
