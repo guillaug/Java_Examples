@@ -9,6 +9,5 @@ public class EthereumConfiguration {
 		ConnectionEthereumJ connectEthereum = new ConnectionEthereumJ();
 		Executors.newSingleThreadExecutor().submit(connectEthereum::start); // Single Thread Executor
 		return null;
-		
 	}
 }

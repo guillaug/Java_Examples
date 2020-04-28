@@ -1,4 +1,4 @@
-package com.tu_dresden.mas;
+package com.tu_dresden.mas.tests;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

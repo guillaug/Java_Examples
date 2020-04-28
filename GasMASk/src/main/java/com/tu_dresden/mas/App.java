@@ -13,7 +13,7 @@ public class App
 	private static final Logger logger = LoggerFactory.getLogger(App.class.getName());
     public static void main( String[] args )
     {
-        logger.info( "Hello World!" );
+        logger.info( "Hello World!");
         //ConnectionWeb3.connectionWeb3js();   
         //JadeSetup jadeSetup = new JadeSetup();
         SenderAgentTopic agentTopic = new SenderAgentTopic();
