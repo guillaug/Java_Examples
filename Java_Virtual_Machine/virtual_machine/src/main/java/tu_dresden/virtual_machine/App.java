@@ -19,20 +19,20 @@ public class App
     {
         System.out.println( "Hello Java Application!" );
         
-        Class<Car> cls = Car.class;  //Should we cast this statement
-        App.invokingMethods(cls);
+        Class clazz = Car.class;  //Should we cast this statement
+        @SuppressWarnings("deprecation")
+		Car car = (Car) clazz.newInstance();
+        App.invokingMethods(clazz);
         
-//        @SuppressWarnings("deprecation")
-//		Car car = (Car) cls.newInstance();
-//        
-//        Field field = cls.getDeclaredField("people"); //take all fields of a class 
-//        
-//        Array.set(field.get(car), 1, "Kevin");  //Assign some values to the Array.
-//         
-//        Object obj = Array.get(field.get(car), 1);  //getter of the run-time environment
-//        
-//        System.out.println(obj);
-//        
+        
+        Field field = clazz.getDeclaredField("people"); //take all fields of a class 
+        
+        Array.set(field.get(car), 1, "Kevin");  //Assign some values to the Array.
+         
+        Object obj = Array.get(field.get(car), 1);  //getter of the run-time environment
+        
+        System.out.println(obj);
+        
 //        Class clazz = String[].class; // assign the class of String
 //        clazz = Class.forName("[Ljava.lang.String;");
 //        System.out.println(clazz.getName());
@@ -54,7 +54,7 @@ public class App
     	System.out.println(obj);
     }
     
-    private static void invokingMethods(Class cls) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException 
+    private static void invokingMethods(Class<Car> cls) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException, NoSuchMethodException, SecurityException 
     {
     	Constructor[] ctors = cls.getDeclaredConstructors();
     	Car car = (Car) ctors[1].newInstance();
@@ -64,4 +64,9 @@ public class App
 //    	method = cls.getDeclaredMethods("print");
     	
     }
+    
+//    private static void typesOfAttributes(Class cls) throws NoSuchFieldException 
+//    {
+//    	Field field = 
+//    }
 }
