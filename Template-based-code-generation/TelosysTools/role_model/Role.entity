@@ -1,0 +1,8 @@
+// Entity Role
+
+Role {
+  myfield : string ; // field example 
+  id : int {@AutoIncremented, @Id};
+  creationDate: date; 
+  relationship: string; 
+}
