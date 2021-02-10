@@ -1,8 +1,8 @@
 package com.tudresden.tropos.manufacturing;
 
-public class Bargain {
+public class ManufacturingInfo {
 	
-    public Bargain(float maxPriceForBargain, float minInventoryLevelForBargain) {
+    public ManufacturingInfo(float maxPriceForBargain, float minInventoryLevelForBargain) {
 		super();
 		this.maxPriceForBargain = maxPriceForBargain;
 		this.minInventoryLevelForBargain = minInventoryLevelForBargain;

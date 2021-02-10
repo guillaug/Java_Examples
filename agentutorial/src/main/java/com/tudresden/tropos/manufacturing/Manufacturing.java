@@ -4,10 +4,14 @@ package com.tudresden.tropos.manufacturing;
 import java.io.Serializable;
 
 public class Manufacturing implements Cloneable, Serializable{
-	public Manufacturing(String order, String inventory) {
+	public Manufacturing(String order, String inventory, String shortage) {
 		super();
 		this.order = order;
 		this.inventory = inventory;
+		this.shortage = shortage;
+	}
+	public String getShortage() {
+		return shortage;
 	}
 	public String getOrder() {
 		return order;
@@ -25,6 +29,7 @@ public class Manufacturing implements Cloneable, Serializable{
 		int result = 1;
 		result = prime * result + ((inventory == null) ? 0 : inventory.hashCode());
 		result = prime * result + ((order == null) ? 0 : order.hashCode());
+		result = prime * result + ((shortage == null) ? 0 : shortage.hashCode());
 		return result;
 	}
 	@Override
@@ -50,6 +55,7 @@ public class Manufacturing implements Cloneable, Serializable{
 	}
 	private final String order;
 	private final String inventory;
+	private final String shortage; 
 	
 	public static enum ManufacturingSector{SPAREPART, PHARMACY, MEDICINE, MILITARY, SERVICE};
 	

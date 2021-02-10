@@ -42,7 +42,7 @@ public class UIMaker extends JFrame{
 			public void windowClosed(WindowEvent e)
 			{
 				//Terminate the agent state when the window was closed.
-				agent.addBehaviour(agent.new ShutdownAgent());
+//				agent.addBehaviour(agent.new ShutdownAgent());
 			}
 		});
 		

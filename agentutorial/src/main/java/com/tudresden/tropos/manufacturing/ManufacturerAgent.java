@@ -104,17 +104,22 @@ public class ManufacturerAgent extends Agent{
 		}
 		ACLMessage message;
 		RetailerInfo serialNumber;
+//		@Override
+//		public void action() {
+//			// TODO Auto-generated method stub
+//			HashSet<RetailerAgent> returnedSearchList = new HashSet<RetailerAgent>();
+//			for(RetailerInfo retailer: agent.retailerList) {
+//				double retailerInfo = retailer.getHolding(); 
+//				
+//				
+//				returnedSearchList.add(retailer.clone());
+//			}
+//		} 
 		@Override
 		public void action() {
 			// TODO Auto-generated method stub
-			HashSet<RetailerAgent> returnedSearchList = new HashSet<RetailerAgent>();
-			for(RetailerInfo retailer: agent.retailerList) {
-				double retailerInfo = retailer.getHolding(); 
-				
-				
-				returnedSearchList.add(retailer.clone());
-			}
-		} 
+			
+		}
 	}
 	
 	public class AddOrderingLevel extends OneShotBehaviour {
