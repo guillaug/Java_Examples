@@ -20,11 +20,14 @@ import java.util.logging.Logger;
 
 public class ManufacturerAgent extends Agent{
 	
+	//Create a manufacturing agent
 	private ManufacturerAgent agent = this; 
 	private static final Logger logger = Logger.getLogger(ManufacturerAgent.class.getName());
+	//To eliminate duplicate objects, put everything into a set object
 	final private Set<RetailerAgent> retailerList = new HashSet<RetailerAgent>();
 	private UIMaker ui;
 	
+	//UI parameter should be set
 	public UIMaker getUI() {
 		return ui;
 	}

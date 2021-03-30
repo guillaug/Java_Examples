@@ -85,7 +85,7 @@
             <id>tilab</id>
             <url>http://jade.tilab.com/maven/</url>
         </repository>  
-   		<!--  <repository>
+   		<repository>
 			<id>jadex-oss-releases</id>
 			<url>https://nexus.actoron.com/content/repositories/oss</url>
 		</repository>
@@ -100,7 +100,7 @@
 		<repository>
 			<id>jadex-pro-nightlies</id>
 			<url>http://nexus.actoron.com/nexus/content/repositories/pro-nightlies</url>
-		</repository>-->
+		</repository>
     </repositories>
     
    	<build>

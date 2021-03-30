@@ -1,0 +1,6 @@
+!start.
+
++!start : true <- burn.
+
++fire <- run.
+

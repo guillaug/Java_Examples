@@ -1,11 +1,11 @@
 package com.tudresden.mas.agents;
-import static com.tudresden.multiagents.topicmanagement.MessageBuilder.inform;
-import static com.tudresden.multiagents.topicmanagement.MessageReceiver.listen;
-import com.tudresden.multiagents.tools.*;
-//import org.slf4j.Logger;
-//import org.slf4j.LoggerFactory;
+import com.tudresden.jadeframework.ContainerKiller;
 import jade.core.behaviours.Behaviour;
 import jade.core.Agent;
+
+import static com.tudresden.multiagents.jadetopicmanagement.MessageBuilder.inform;
+import static com.tudresden.multiagents.jadetopicmanagement.MessageReceiver.listen;
+
 import java.util.logging.Logger;
 
 public class IncrementBehaviour extends Behaviour {

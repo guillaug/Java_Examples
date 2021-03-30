@@ -1,4 +1,4 @@
-package com.tudresden.multiagents.distributors;
+package com.tudresden.jadeframework;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -13,9 +13,6 @@ public class DistributorGUI extends JFrame {
 	 */
 	private static final long serialVersionUID = -5478795277393285582L;
 	
-//	public DistributorGUI() {
-//		
-//	}
 
 	private Distributor myAgent;
 	

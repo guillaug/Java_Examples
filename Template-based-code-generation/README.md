@@ -108,9 +108,10 @@ Download the jar file from the website.
 
 Please type the following command for the jar package: 
 
-   ```java -jar telosys-cli-3.2.2-001.jar;```
+   ```java -jar lib/telosys-cli-3.2.2-001.jar;```
 
 And you can follow the sample scenario. To set up a home directory for the project, please type as below
+
 ``` h /Users/username/Desktop/Projects/OpenSource/Compiler_Design/telosys_firsttest```
 
 To initialize a project template, please type as below: 
@@ -130,8 +131,11 @@ Project folder : '/Users/username/Desktop/Projects/OpenSource/Compiler_Design/te
 . file 'telosys-tools.cfg' created. 
 ```
 Create an entity and named as *role* as below: 
+
 ```nm role```
+
 ```ne role``` --> Role entity creation for the project.
+
 
 Under the folder called role_model/Role.entity, there is an entity file and you can organize it as below: 
 
@@ -187,6 +191,7 @@ An then please select a bundle.
 ```ib java8-commons-T312```
 
 Final step is to generate: 
+
 ```gen * * -r```
 
 In the /src folder, you can find the generated files. 

@@ -2,7 +2,8 @@ package com.tudresden.multiagents.agentgui;
 
 import org.junit.Test;
 
-import com.tudresden.multiagents.distributors.*;
+import com.tudresden.jadeframework.Distributor;
+import com.tudresden.jadeframework.DistributorGUI;
 
 public class AppGuiTest {
 	

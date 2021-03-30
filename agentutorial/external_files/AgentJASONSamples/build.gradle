@@ -1,0 +1,73 @@
+plugins {
+    id 'java'
+}
+
+apply plugin: "application" //you should apply a plugin called application
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+ext {
+    javaMainClass = "com.tudresden.jasonsample.MainClass"
+}
+
+jar {
+    manifest {
+        attributes(
+                "Main-Class": javaMainClass
+        )
+    }
+}
+
+java {
+    mainClassName = javaMainClass
+}
+
+group 'com.tudresden'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    // https://mvnrepository.com/artifact/net.sourceforge.jadex/jadex-bridge
+    //compile group: 'net.sourceforge.jadex', name: 'jadex-bridge', version: '2.4'
+    // https://mvnrepository.com/artifact/org.activecomponents.jadex/jadex-commons
+    //compile group: 'org.activecomponents.jadex', name: 'jadex-commons', version: '3.0.117'
+    //compile files('libs/jason-2.6.2.jar')
+    //compile files('libs/json-20170516.jar')
+    //compile files('libs/commons-io-2.5.jar')
+    compile fileTree(dir: 'libs', include: '*.jar')
+
+}
+
+
+task runWithExecJava(type: Exec) {
+    dependsOn build
+    group = "Execution"
+    description = "Run the main class with ExecTask"
+    commandLine "java", "-classpath", sourceSets.main.runtimeClasspath.getAsPath(), javaMainClass
+}
+
+task runWithExecJarExecutable(type: Exec) {
+    dependsOn jar
+    group = "Execution"
+    description = "Run the output executable jar with ExecTask"
+    commandLine "java", "-jar", jar.archiveFile.get()
+}
+
+task runWithExecJarOnClassPath(type: Exec) {
+    dependsOn jar
+    group = "Execution"
+    description = "Run the mainClass from the output jar in classpath with ExecTask"
+    commandLine "java", "-classpath", jar.archiveFile.get() , javaMainClass
+}
+
+
+
+

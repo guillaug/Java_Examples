@@ -1,4 +1,8 @@
 package com.tudresden.multiagents.jadexagent;
+import jadex.base.PlatformConfiguration;
+import jadex.base.Starter;
+import jadex.micro.annotation.Agent;
+
 //package com.tudresden.multiagents.agentutorial;
 //
 //import jadex.base.IPlatformConfiguration;
@@ -30,3 +34,14 @@ package com.tudresden.multiagents.jadexagent;
 //
 //
 //}
+@Agent
+public class HelloAgent {
+
+	
+	public static void main(String[] args)
+	{
+		PlatformConfiguration configuration = PlatformConfiguration.getDefaultNoGui();
+		configuration.addComponent(HelloAgent.class);
+		Starter.createPlatform(configuration).get();
+	}
+}

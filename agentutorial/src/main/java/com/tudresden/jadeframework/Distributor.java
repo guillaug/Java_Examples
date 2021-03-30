@@ -1,4 +1,4 @@
-package com.tudresden.multiagents.distributors;
+package com.tudresden.jadeframework;
 
 import jade.core.Agent;
 import jade.core.behaviours.CyclicBehaviour; //Behaviour library
@@ -124,7 +124,7 @@ public class Distributor extends Agent{
 		public void action() {
 			// TODO Auto-generated method stub
 			MessageTemplate mTemplate = MessageTemplate.MatchPerformative(ACLMessage.ACCEPT_PROPOSAL);
-			ACLMessage message = myAgent.receive(mTemplate);
+			ACLMessage message = myAgent.receive(mTemplate); //ACCEPT PROPOSAL FIPA Message
 			
 			if (message != null) 
 			{

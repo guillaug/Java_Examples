@@ -1,4 +1,4 @@
-package com.tudresden.multiagents.topicmanagement;
+package com.tudresden.multiagents.jadetopicmanagement;
 
 import jade.core.AID;
 import jade.lang.acl.ACLMessage;

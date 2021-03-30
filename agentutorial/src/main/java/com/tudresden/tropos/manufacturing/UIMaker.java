@@ -19,7 +19,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import com.tudresden.multiagents.distributors.Manufacturer;
+import com.tudresden.jadeframework.Manufacturer;
 
 import jade.core.behaviours.Behaviour;
 

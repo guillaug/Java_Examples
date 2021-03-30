@@ -1,0 +1,94 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.tudresden</groupId>
+  <artifactId>jasonsample</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <url>http://maven.apache.org</url>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <mainClass>com.tudresden.jasonsample.MainClass</mainClass>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+            <id>unpack</id>
+            <phase>package</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+          <artifactItems>
+            <artifactItem>
+              <groupId>com.tudresden</groupId>
+              <artifactId>jasonsample</artifactId>
+              <version>1.0-SNAPSHOT</version>
+              <type>jar</type>
+            </artifactItem>
+          </artifactItems>
+
+        </configuration>
+      </plugin>
+     <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.1.2</version>
+        <configuration>
+            <id>copy</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.tudresden</groupId>
+                  <artifactId>jasonsample</artifactId>
+                  <version>1.0-SNAPSHOT</version>
+                  <type>jar</type>
+                  <!--<classifier> [classifier - optional] </classifier>
+                  <overWrite>[ true or false ]</overWrite>
+                  <outputDirectory>[ output directory ]</outputDirectory>
+                  <destFileName>[ filename ]</destFileName>-->
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+      </plugin>
+
+
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <!--<dependency>
+      <groupId>net.sourceforge.jadex</groupId>
+      <artifactId>jadex-bridge</artifactId>
+      <version>2.4</version>
+    </dependency>
+    <dependency>
+      <groupId>org.activecomponents.jadex</groupId>
+      <artifactId>jadex-commons</artifactId>
+      <version>3.0.117</version>
+    </dependency>
+    <dependency>
+      <groupId>net.sourceforge.jadex</groupId>
+      <artifactId>jadex-platform-base</artifactId>
+      <version>2.1</version>
+    </dependency>-->
+
+  </dependencies>
+</project>
