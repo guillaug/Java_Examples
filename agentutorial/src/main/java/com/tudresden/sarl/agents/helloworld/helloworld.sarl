@@ -1,0 +1,26 @@
+package com.tudresden.sarl.agents
+
+import io.sarl.core.Destroy
+import io.sarl.core.Lifecycle
+import io.sarl.core.Logging 
+import io.sarl.core.Schedules 
+
+//A Hello world agent
+
+agent HelloAgent {
+	uses Lifecycle, Schedules, Logging
+	
+	//Print Hello Message and then kill itself after spawning in 2 seconds (2000 ms)
+	on Initialize {
+		loggingName = "Hello World Agent Message" 
+		info("Give me the info message!")
+		in(2000)[killMe]
+	}
+	
+	
+	//Event trigger before agent dies, print goodbye agent
+	
+	on Destroy {
+		info("Goodbye the world")
+	}
+}
